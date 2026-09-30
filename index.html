@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Museo de Santa Rosa — Group 7 Art Appreciation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --maroon-deep: #7A1F22;
+    --maroon-darker: #4E1214;
+    --pastel-rose: #E9BEB8;
+    --pastel-blush: #FBEDEA;
+    --ivory: #FEFBF9;
+    --ink: #2A2220;
+    --ink-soft: #6B5C58;
+    --line: rgba(122,31,34,0.15);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    color-scheme: light;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  * { box-sizing: inherit; margin: 0; padding: 0; }
+  body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .serif { font-family: 'Fraunces', serif; }
+  img { max-width: 100%; display: block; }
+
+  /* ---------- SECTION 1 : HERO ---------- */
+  .hero {
+    position: relative;
+    height: 68vh;
+    min-height: 420px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--maroon-deep);
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  /* Placeholder "video" — swap this block for a real <video> element when footage is ready.
+     See the HTML comment further below for the exact markup to paste in. */
+  .hero-placeholder {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(233,190,184,0.35), transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(122,31,34,0.55), transparent 55%),
+      linear-gradient(135deg, var(--maroon-darker), var(--maroon-deep) 60%, #8f2a2d);
+    background-size: 200% 200%;
+    animation: driftBG 18s ease-in-out infinite;
+  }
+  @keyframes driftBG {
+    0%   { background-position: 0% 0%, 100% 100%, 0% 0%; }
+    50%  { background-position: 30% 20%, 70% 80%, 100% 50%; }
+    100% { background-position: 0% 0%, 100% 100%, 0% 0%; }
+  }
+  .hero-veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(30,8,9,0.78) 0%, rgba(30,8,9,0.15) 55%, rgba(30,8,9,0.35) 100%);
+  }
+  .hero-note {
+    position: absolute;
+    top: calc(20px + env(safe-area-inset-top, 0px));
+    right: 24px;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.03em;
+    z-index: 2;
+    font-family: 'Work Sans', sans-serif;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    padding: 3rem clamp(1.25rem, 5vw, 4rem) 3.5rem;
+    max-width: 780px;
+  }
+  .hero-kicker {
+    font-size: 0.85rem;
+    color: var(--pastel-rose);
+    margin-bottom: 0.9rem;
+  }
+  .hero-content h1 {
+    font-size: clamp(2.1rem, 5vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.08;
+    margin-bottom: 1.1rem;
+  }
+  .hero-content p {
+    font-size: 1.05rem;
+    max-width: 60ch;
+    color: rgba(255,255,255,0.88);
+  }
+
+  /* ---------- SECTION 2 : GALLERY ---------- */
+  .gallery {
+    background: var(--ivory);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 6vw, 5rem);
+  }
+  .gallery-head {
+    max-width: 640px;
+    margin: 0 auto clamp(2.5rem, 6vw, 4.5rem);
+    text-align: center;
+  }
+  .gallery-head .eyebrow {
+    color: var(--maroon-deep);
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+  .gallery-head h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    font-weight: 600;
+  }
+  .gallery-head p { color: var(--ink-soft); margin-top: 0.9rem; }
+
+  .artwork-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .artwork-row {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+  }
+  .artwork-row.reverse { direction: rtl; }
+  .artwork-row.reverse > * { direction: ltr; }
+
+  .art-frame {
+    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(145deg, var(--pastel-blush), var(--pastel-rose));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0.5rem;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 1px 3px rgba(74,18,20,0.12);
+  }
+  .art-frame:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(74,18,20,0.18); }
+  .art-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
+  .art-frame .placeholder-label {
+    font-family: 'Fraunces', serif;
+    color: var(--maroon-deep);
+    opacity: 0.55;
+    font-size: 1.1rem;
+  }
+  .art-frame .expand-hint {
+    position: absolute;
+    bottom: 10px; right: 12px;
+    font-size: 0.7rem;
+    color: var(--maroon-deep);
+    background: rgba(255,255,255,0.8);
+    padding: 3px 9px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .art-frame:hover .expand-hint { opacity: 1; }
+
+  .art-copy .art-index { color: var(--maroon-deep); font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .art-copy h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.6rem; }
+  .art-copy p { color: var(--ink-soft); font-size: 0.97rem; max-width: 46ch; }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(30,10,11,0.55);
+    backdrop-filter: blur(2px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    z-index: 50;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--ivory);
+    max-width: 880px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .modal-image {
+    background: linear-gradient(145deg, var(--pastel-blush), var(--pastel-rose));
+    display: flex; align-items: center; justify-content: center;
+    min-height: 260px;
+  }
+  .modal-image img { width: 100%; height: 100%; object-fit: cover; }
+  .modal-image .placeholder-label { font-family: 'Fraunces', serif; color: var(--maroon-deep); opacity: 0.5; }
+  .modal-text { padding: clamp(1.5rem, 3vw, 2.5rem); position: relative; }
+  .modal-close {
+    position: absolute; top: 14px; right: 16px;
+    background: none; border: none; font-size: 1.3rem;
+    color: var(--ink-soft); cursor: pointer; line-height: 1;
+  }
+  .modal-text h3 { font-size: 1.6rem; margin-bottom: 0.3rem; }
+  .modal-text .modal-meta { color: var(--maroon-deep); font-size: 0.85rem; margin-bottom: 1.2rem; }
+  .modal-text h4 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--maroon-deep);
+    margin: 1.3rem 0 0.4rem;
+  }
+  .modal-text h4:first-of-type { margin-top: 0; }
+  .modal-text p { color: var(--ink-soft); font-size: 0.95rem; }
+
+  /* ---------- SECTION 3 : CLOSING ---------- */
+  .closing {
+    background: linear-gradient(180deg, var(--maroon-deep), var(--maroon-darker));
+    color: #fff;
+    padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 6vw, 5rem);
+  }
+  .closing-head { text-align: center; max-width: 620px; margin: 0 auto clamp(2.5rem, 6vw, 4rem); }
+  .closing-head .eyebrow { color: var(--pastel-rose); font-size: 0.85rem; margin-bottom: 0.6rem; }
+  .closing-head h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 600; }
+
+  .group-photo {
+    aspect-ratio: 16 / 9;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Fraunces', serif;
+    font-size: 0.9rem;
+    overflow: hidden;
+  }
+  .group-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .members {
+    max-width: 620px;
+    margin: 0 auto clamp(3rem, 7vw, 4.5rem);
+    text-align: center;
+  }
+  .members .members-label {
+    font-family: 'Fraunces', serif;
+    font-size: 0.8rem;
+    color: var(--pastel-rose);
+    margin-bottom: 1.1rem;
+  }
+  .member-names {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem 2rem;
+  }
+  .member-names li {
+    font-size: 0.98rem;
+    color: rgba(255,255,255,0.9);
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  @media (max-width: 520px) {
+    .member-names { grid-template-columns: 1fr; }
+  }
+
+  .remarks {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: clamp(2rem, 5vw, 3rem);
+  }
+  .remarks p { color: rgba(255,255,255,0.85); font-size: 1rem; font-style: italic; font-family: 'Fraunces', serif; }
+  .remarks .sign { margin-top: 1.2rem; font-size: 0.85rem; color: rgba(255,255,255,0.55); font-style: normal; font-family: 'Work Sans', sans-serif; }
+
+  @media (max-width: 760px) {
+    .artwork-row, .artwork-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+    .modal-box { grid-template-columns: 1fr; }
+    .modal-image { min-height: 200px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-placeholder { animation: none; }
+    .art-frame, .art-frame:hover { transition: none; transform: none; }
+  }
+  :focus-visible { outline: 2px solid var(--maroon-deep); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+  <!-- ============ SECTION 1 : HERO ============ -->
+  <section class="hero">
+    <div class="hero-media">
+      <img class="hero-placeholder" src="background.jpg" alt="Group 7 welcome photo" style="object-fit:cover;width:100%;height:100%;">
+      <div class="hero-veil"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-kicker serif">Group 7 · Art Appreciation</div>
+      <h1>Museo de Santa Rosa</h1>
+      <p>We're Group 7, and this is our shared gallery — ten pieces we chose to slow down for, look at closely, and talk through together. This page is a vessel for the impressions they etched upon us.</p>
+    </div>
+  </section>
+  <!--
+    TO REPLACE THE HERO WITH A REAL VIDEO:
+    1. Delete the <div class="hero-placeholder"></div> line above.
+    2. In its place, add:
+       <video class="hero-placeholder" autoplay muted loop playsinline style="object-fit:cover;width:100%;height:100%;">
+         <source src="YOUR_VIDEO_FILE.mp4" type="video/mp4">
+       </video>
+    3. Remove the <span class="hero-note"> line once the real video is in.
+  -->
+
+  <!-- ============ SECTION 2 : GALLERY ============ -->
+  <section class="gallery" id="gallery">
+    <div class="gallery-head">
+      <div class="eyebrow serif">The Collection</div>
+      <h2>Ten Works, Ten Readings</h2>
+      <p>Click any piece to open its title, description, and our personal analysis.</p>
+    </div>
+    <div class="artwork-list" id="artworkList"></div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-image" id="modalImage"><span class="placeholder-label">Artwork Image</span></div>
+      <div class="modal-text">
+        <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+        <h3 id="modalTitle"></h3>
+        <div class="modal-meta" id="modalMeta"></div>
+        <h4>Description</h4>
+        <p id="modalDescription"></p>
+        <h4>Our Analysis</h4>
+        <p id="modalAnalysis"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 3 : CLOSING ============ -->
+  <section class="closing">
+    <div class="closing-head">
+      <div class="eyebrow serif">Group 7</div>
+      <h2>The People Behind the Page</h2>
+    </div>
+    <div class="group-photo" id="groupPhoto"><span>Group Photo</span></div>
+    <div class="members">
+      <div class="members-label">Members</div>
+      <ul class="member-names" id="memberNames"></ul>
+    </div>
+    <div class="remarks">
+      <p>"Put your mind and soul on your canvas no matter what others say."</p>
+      <div class="sign">— Fernando Amorsolo · Group 7, Art Appreciation</div>
+    </div>
+  </section>
+
+<script>
+  // ---- EASY-EDIT DATA: add/remove artworks by editing this array. Each new
+  // entry automatically becomes a new alternating box — no extra HTML needed. ----
+  const artworks = [
+  {
+    title: 'The Amanda Zavalla Perlas Ancestral House',
+    artist: 'Built by the Zavalla family, The house is located in Barangay Kanluran, Santa Rosa, Laguna',
+    description: 'Another of the Zavalla-lineage ancestral houses in Barangay Kanluran, this home is named after a Zavalla daughter who married into the Perlas family, and is now owned by her descendants. The house is a two-story structure with a traditional Filipino design, featuring capiz shell windows, wooden floors, and intricate carvings. It serves as a testament to the architectural heritage of the region and the enduring legacy of the Zavalla family.',
+    analysis: '',
+    img: 'artwork1.jpg'
+  },
+  {
+    title: 'The David Zavalla Ortigas Ancestral House',
+    artist: 'Built by the Zavalla family, The house is located in Barangay Ortigas, Santa Rosa, Laguna',
+    description: 'A distinctive example of traditional Filipino architecture, the David Zavalla Ortigas Ancestral House showcases the craftsmanship and design principles of its era. With its characteristic wooden beams and ornate detailing, it stands as a symbol of the cultural heritage and social status of the Zavalla family during their time.',
+    analysis: '',
+    img: 'artwork2.jpg'
+  },
+  {
+    title: 'The Dominga Ochoa Zavalla House Façade',
+    artist: 'Built by the Zavalla family, The house is located in Barangay Kanluran, Santa Rosa, Laguna',
+    description: 'The façade of the Dominga Ochoa Zavalla House showcases the intricate woodwork and traditional Filipino architectural elements that define its historical significance.',
+    analysis: '',
+    img: 'artwork3.jpg'
+  },
+  {
+    title: 'The Andres Barroma Zavalla Ancestral House ',
+    artist: 'Built by the Zavalla family, The house is located in Barangay Kanluran, Santa Rosa, Laguna',
+    description: 'The Andres Barroma Zavalla Ancestral House is a remarkable example of traditional Filipino architecture, reflecting the craftsmanship and design principles of its era.',
+    analysis: '',
+    img: 'artwork4.jpg'
+  },
+  {
+    title: 'The Cuartel De Santo Domino',
+    artist: 'The Spanish colonial military police force',
+    description: 'The Cuartel De Santo Domingo is a historic military barracks that played a significant role during the Spanish colonial period in the Philippines. It served as a base for the Spanish colonial military police force, known as the Guardia Civil, and was strategically located to maintain order and security in the region. The structure is characterized by its robust construction, featuring thick walls and traditional Spanish architectural elements, reflecting the military engineering practices of the time.',
+    analysis: '...',
+    img: 'artwork5.jpg'
+  },
+  {
+    title: 'The Altar of Santa Rosa de Lima Parish Church',
+    artist: 'Ceiling paintings by Don Mariano Perlas, Sr., during the term of Fray Andres Tejedor',
+    description: 'The altar of the Santa Rosa de Lima Parish Church is a central feature of the churchs interior, showcasing intricate religious artwork and architectural design. The ceiling paintings, created by Don Mariano Perlas, Sr., during the term of Fray Andres Tejedor, depict various biblical scenes and saints, contributing to the spiritual ambiance of the church. The altar itself is adorned with ornate carvings and religious iconography, reflecting the rich cultural and religious heritage of the community.',
+    analysis: '...',
+    img: 'artwork6.jpg'
+  },
+  {
+    title: 'The Reconstructed Façade of Santa Rosa de Lima Parish Church',
+    artist: 'Spanish colonial-era builders, Reconstruction of the church façade was done by the National Historical Commission of the Philippines (NHCP) in 2014',
+    description: 'The reconstructed façade of the Santa Rosa de Lima Parish Church is a testament to the efforts of the National Historical Commission of the Philippines (NHCP) to preserve and restore historical landmarks. The reconstruction aimed to faithfully replicate the original Spanish colonial-era design, incorporating traditional architectural elements and materials. The façade features intricate detailing, including ornate carvings and religious symbols, reflecting the churchs historical and cultural significance within the community.',
+    analysis: '...',
+    img: 'artwork7.jpg'
+  },
+  {
+    title: 'Ang Maya',
+    artist: 'Music by Jose Estella; lyrics by Severino Reyes',
+    description: ' "Ang Maya" is a waltz from the 1905 sarswela Filipinas Para Los Filipinos ("Philippines for the Filipinos"), composed by Jose Estella with lyrics by Severino Reyes. The song is a poignant reflection of Filipino life and culture during the early 20th century, capturing themes of love, longing, and the beauty of everyday experiences. Its melodic structure and lyrical content have made it a beloved piece in the Filipino musical repertoire, resonating with audiences for generations.',
+    analysis: '...',
+    img: 'artwork8.jpg'
+  },
+  {
+    title: 'Makinilya (Typewriter)',
+    artist: 'Manufacturer unknown; used by Romeo Moran, a local journalist and writer, in the mid-20th century, located at Museo de Maria Carpena / municipal heritage collection, Santa Rosa, Laguna',
+    description: 'This typewriter was used by Romeo Moran, who served as secretary of the municipality of Santa Rosa. It remained in use until February 1995.',
+    analysis: '...',
+    img: 'artwork9.jpg'
+  },
+  {
+    title: 'American Helmets – World War II, and Bayoneta',
+    artist: 'Manufacturer unknown; used by local soldiers during World War II, located at Museo de Maria Carpena / municipal heritage collection, Santa Rosa, Laguna',
+    description: 'These American helmets and bayonets were used by local soldiers during World War II. They are part of the municipal heritage collection at the Museo de Maria Carpena in Santa Rosa, Laguna, and serve as historical artifacts that provide insight into the military history and experiences of the local community during the war.',
+    analysis: '...',
+    img: 'artwork10.jpg'
+  }
+  ];
+
+  const list = document.getElementById('artworkList');
+  artworks.forEach((art, i) => {
+    const row = document.createElement('div');
+    row.className = 'artwork-row' + (i % 2 === 1 ? ' reverse' : '');
+    row.innerHTML = `
+      <div class="art-frame" data-index="${i}">
+        ${art.img ? `<img src="${art.img}" alt="${art.title}">` : `<span class="placeholder-label">Artwork ${i + 1}</span>`}
+        <span class="expand-hint">View details</span>
+      </div>
+      <div class="art-copy">
+        <div class="art-index">0${i + 1} / 10</div>
+        <h3>${art.title}</h3>
+        <p>${art.description}</p>
+      </div>
+    `;
+    list.appendChild(row);
+  });
+
+  const overlay = document.getElementById('modalOverlay');
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalDescription = document.getElementById('modalDescription');
+  const modalAnalysis = document.getElementById('modalAnalysis');
+
+  list.addEventListener('click', (e) => {
+    const frame = e.target.closest('.art-frame');
+    if (!frame) return;
+    const art = artworks[frame.dataset.index];
+    modalImage.innerHTML = art.img ? `<img src="${art.img}" alt="${art.title}">` : '<span class="placeholder-label">Artwork Image</span>';
+    modalTitle.textContent = art.title;
+    modalMeta.textContent = art.artist;
+    modalDescription.textContent = art.description;
+    modalAnalysis.textContent = art.analysis;
+    overlay.classList.add('open');
+  });
+  document.getElementById('modalClose').addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') overlay.classList.remove('open'); });
+
+  // ---- EASY-EDIT DATA: group members ----
+  const members = [
+    'Adato, Brendan Regnier D.',
+    'Cailao, Mark Justine D.',
+    'Cruz, Jan Arby C.',
+    'Gimena, John Calvin G.',
+    'Layosa, Khelvin B.',
+    'Malinay, Might Xyrel A.'
+  ];
+  const memberNames = document.getElementById('memberNames');
+  members.forEach(name => {
+    const li = document.createElement('li');
+    li.textContent = name;
+    memberNames.appendChild(li);
+  });
+
+  // To add the real group photo: paste an image URL or data-URI below.
+  const groupPhotoUrl = 'groupPhoto.jpg'; // e.g. 'https://...' or 'data:image/jpeg;base64,...'
+  if (groupPhotoUrl) {
+    document.getElementById('groupPhoto').innerHTML = `<img src="${groupPhotoUrl}" alt="Group 7">`;
+  }
+</script>
+</body>
+</html>
