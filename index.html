@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Museo de Santa Rosa — Group 7 Art Appreciation</title>
+<title>Museo de Santa Rosa: Heritage and Identity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -307,25 +307,16 @@
   <!-- ============ SECTION 1 : HERO ============ -->
   <section class="hero">
     <div class="hero-media">
-      <img class="hero-placeholder" src="background.jpg" alt="Group 7 welcome photo" style="object-fit:cover;width:100%;height:100%;">
+      <img class="hero-placeholder" src="background.jpg" alt="Welcome photo" style="object-fit:cover;width:100%;height:100%;">
       <div class="hero-veil"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-kicker serif">Group 7 · Art Appreciation</div>
+      <div class="hero-kicker serif">The Heart of Local History</div>
       <h1>Museo de Santa Rosa</h1>
-      <p>We're Group 7, and this is our shared gallery — ten pieces we chose to slow down for, look at closely, and talk through together. This page is a vessel for the impressions they etched upon us.</p>
+      <p>We're from BSIT 3-2, and this is our shared gallery — ten pieces we chose to slow down for, look at closely, and talk through together. This page is a vessel for the impressions they etched upon us.</p>
     </div>
   </section>
-  <!--
-    TO REPLACE THE HERO WITH A REAL VIDEO:
-    1. Delete the <div class="hero-placeholder"></div> line above.
-    2. In its place, add:
-       <video class="hero-placeholder" autoplay muted loop playsinline style="object-fit:cover;width:100%;height:100%;">
-         <source src="YOUR_VIDEO_FILE.mp4" type="video/mp4">
-       </video>
-    3. Remove the <span class="hero-note"> line once the real video is in.
-  -->
-
+  
   <!-- ============ SECTION 2 : GALLERY ============ -->
   <section class="gallery" id="gallery">
     <div class="gallery-head">
@@ -343,9 +334,15 @@
       <div class="modal-text">
         <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
         <h3 id="modalTitle"></h3>
-        <div class="modal-meta" id="modalMeta"></div>
+        <div class="modal-meta">
+          <div><strong>Artist:</strong> <span id="modalArtist"></span></div>
+          <div><strong>Location:</strong> <span id="modalLocation"></span></div>
+          <div><strong>Artform:</strong> <span id="modalArtform"></span></div>
+        </div>
         <h4>Description</h4>
         <p id="modalDescription"></p>
+        <h4>Personal Analysis</h4>
+        <p id="modalPersonalAnalysis"></p>
         <h4>Our Analysis</h4>
         <p id="modalAnalysis"></p>
       </div>
@@ -355,7 +352,7 @@
   <!-- ============ SECTION 3 : CLOSING ============ -->
   <section class="closing">
     <div class="closing-head">
-      <div class="eyebrow serif">Group 7</div>
+      <div class="eyebrow serif">Presenting</div>
       <h2>The People Behind the Page</h2>
     </div>
     <div class="group-photo" id="groupPhoto"><span>Group Photo</span></div>
@@ -365,7 +362,7 @@
     </div>
     <div class="remarks">
       <p>"Put your mind and soul on your canvas no matter what others say."</p>
-      <div class="sign">— Fernando Amorsolo · Group 7, Art Appreciation</div>
+      <div class="sign">— Fernando Amorsolo · BSIT 3-2, Art Appreciation</div>
     </div>
   </section>
 
@@ -375,72 +372,102 @@
   const artworks = [
   {
     title: 'The Amanda Zavalla Perlas Ancestral House',
-    artist: 'Built by the Zavalla family, The house is located in Barangay Kanluran, Santa Rosa, Laguna',
+    artist: 'Zavalla family',
+    location: 'Barangay Kanluran, Santa Rosa, Laguna',
+    artform: 'Traditional Filipino Ancestral House',
     description: 'Another of the Zavalla-lineage ancestral houses in Barangay Kanluran, this home is named after a Zavalla daughter who married into the Perlas family, and is now owned by her descendants. The house is a two-story structure with a traditional Filipino design, featuring capiz shell windows, wooden floors, and intricate carvings. It serves as a testament to the architectural heritage of the region and the enduring legacy of the Zavalla family.',
-    analysis: '',
+    personalAnalysis: '',
+    analysis: 'This house reflects how vernacular architecture preserved family identity, social standing, and local craftsmanship. The use of capiz, wood, and layered spaces turns the home into both a residence and a living archive of Santa Rosa history.',
     img: 'artwork1.jpg'
   },
   {
     title: 'The David Zavalla Ortigas Ancestral House',
-    artist: 'Built by the Zavalla family, The house is located in Barangay Ortigas, Santa Rosa, Laguna',
+    artist: 'Zavalla family',
+    location: 'Barangay Ortigas, Santa Rosa, Laguna',
+    artform: 'Traditional Filipino Ancestral House',
     description: 'A distinctive example of traditional Filipino architecture, the David Zavalla Ortigas Ancestral House showcases the craftsmanship and design principles of its era. With its characteristic wooden beams and ornate detailing, it stands as a symbol of the cultural heritage and social status of the Zavalla family during their time.',
-    analysis: '',
+    personalAnalysis: '',
+    analysis: 'The structure emphasizes continuity between built form and family memory. Its carefully framed details and traditional materials show how architecture can narrate lineage, heritage, and a community’s sense of permanence.',
     img: 'artwork2.jpg'
   },
   {
     title: 'The Dominga Ochoa Zavalla House Façade',
-    artist: 'Built by the Zavalla family, The house is located in Barangay Kanluran, Santa Rosa, Laguna',
+    artist: 'Zavalla family',
+    location: 'Barangay Kanluran, Santa Rosa, Laguna',
+    artform: 'Architectural Façade',
     description: 'The façade of the Dominga Ochoa Zavalla House showcases the intricate woodwork and traditional Filipino architectural elements that define its historical significance.',
-    analysis: '',
+    personalAnalysis: '',
+    analysis: 'The façade functions like a visual introduction to the home’s identity. Its ornamental details suggest pride in both craftsmanship and the family’s place within the local social and cultural landscape.',
     img: 'artwork3.jpg'
   },
   {
     title: 'The Andres Barroma Zavalla Ancestral House ',
-    artist: 'Built by the Zavalla family, The house is located in Barangay Kanluran, Santa Rosa, Laguna',
+    artist: 'Zavalla family',
+    location: 'Barangay Kanluran, Santa Rosa, Laguna',
+    artform: 'Traditional Filipino Ancestral House',
     description: 'The Andres Barroma Zavalla Ancestral House is a remarkable example of traditional Filipino architecture, reflecting the craftsmanship and design principles of its era.',
-    analysis: '',
+    personalAnalysis: '',
+    analysis: 'Its form demonstrates how ancestral houses were not simply shelter but cultural markers of permanence. The building embodies the region’s craftsmanship and a lasting visual record of family heritage.',
     img: 'artwork4.jpg'
   },
   {
     title: 'The Cuartel De Santo Domino',
-    artist: 'The Spanish colonial military police force',
+    artist: 'Spanish colonial military authorities',
+    location: 'Santa Rosa, Laguna',
+    artform: 'Historic Military Barracks',
     description: 'The Cuartel De Santo Domingo is a historic military barracks that played a significant role during the Spanish colonial period in the Philippines. It served as a base for the Spanish colonial military police force, known as the Guardia Civil, and was strategically located to maintain order and security in the region. The structure is characterized by its robust construction, featuring thick walls and traditional Spanish architectural elements, reflecting the military engineering practices of the time.',
-    analysis: '...',
+    personalAnalysis: '',
+    analysis: 'The barracks reveal how colonial power used architecture to project control and discipline. Its heavy structure and strategic placement show the relationship between military design and the maintenance of social order.',
     img: 'artwork5.jpg'
   },
   {
     title: 'The Altar of Santa Rosa de Lima Parish Church',
-    artist: 'Ceiling paintings by Don Mariano Perlas, Sr., during the term of Fray Andres Tejedor',
-    description: 'The altar of the Santa Rosa de Lima Parish Church is a central feature of the churchs interior, showcasing intricate religious artwork and architectural design. The ceiling paintings, created by Don Mariano Perlas, Sr., during the term of Fray Andres Tejedor, depict various biblical scenes and saints, contributing to the spiritual ambiance of the church. The altar itself is adorned with ornate carvings and religious iconography, reflecting the rich cultural and religious heritage of the community.',
-    analysis: '...',
+    artist: 'Don Mariano Perlas, Sr.',
+    location: 'Santa Rosa de Lima Parish Church, Santa Rosa, Laguna',
+    artform: 'Religious Artwork / Church Altar',
+    description: 'The altar of the Santa Rosa de Lima Parish Church is a central feature of the church’s interior, showcasing intricate religious artwork and architectural design. The ceiling paintings, created by Don Mariano Perlas, Sr., during the term of Fray Andres Tejedor, depict various biblical scenes and saints, contributing to the spiritual ambiance of the church. The altar itself is adorned with ornate carvings and religious iconography, reflecting the rich cultural and religious heritage of the community.',
+    personalAnalysis: '',
+    analysis: 'The altar blends devotion with artistry, making faith visible through ornament, image, and symbolism. It turns the church into a place where worship and local cultural identity are experienced together.',
     img: 'artwork6.jpg'
   },
   {
     title: 'The Reconstructed Façade of Santa Rosa de Lima Parish Church',
-    artist: 'Spanish colonial-era builders, Reconstruction of the church façade was done by the National Historical Commission of the Philippines (NHCP) in 2014',
-    description: 'The reconstructed façade of the Santa Rosa de Lima Parish Church is a testament to the efforts of the National Historical Commission of the Philippines (NHCP) to preserve and restore historical landmarks. The reconstruction aimed to faithfully replicate the original Spanish colonial-era design, incorporating traditional architectural elements and materials. The façade features intricate detailing, including ornate carvings and religious symbols, reflecting the churchs historical and cultural significance within the community.',
-    analysis: '...',
+    artist: 'National Historical Commission of the Philippines (NHCP)',
+    location: 'Santa Rosa de Lima Parish Church, Santa Rosa, Laguna',
+    artform: 'Architectural Reconstruction',
+    description: 'The reconstructed façade of the Santa Rosa de Lima Parish Church is a testament to the efforts of the National Historical Commission of the Philippines (NHCP) to preserve and restore historical landmarks. The reconstruction aimed to faithfully replicate the original Spanish colonial-era design, incorporating traditional architectural elements and materials. The façade features intricate detailing, including ornate carvings and religious symbols, reflecting the church’s historical and cultural significance within the community.',
+    personalAnalysis: '',
+    analysis: 'The restoration preserves the church’s colonial memory while making it legible to the present generation. It shows how heritage work can protect both physical structure and cultural meaning.',
     img: 'artwork7.jpg'
   },
   {
     title: 'Ang Maya',
-    artist: 'Music by Jose Estella; lyrics by Severino Reyes',
-    description: ' "Ang Maya" is a waltz from the 1905 sarswela Filipinas Para Los Filipinos ("Philippines for the Filipinos"), composed by Jose Estella with lyrics by Severino Reyes. The song is a poignant reflection of Filipino life and culture during the early 20th century, capturing themes of love, longing, and the beauty of everyday experiences. Its melodic structure and lyrical content have made it a beloved piece in the Filipino musical repertoire, resonating with audiences for generations.',
-    analysis: '...',
+    artist: 'Jose Estella and Severino Reyes',
+    location: 'Santa Rosa, Laguna / Filipino musical tradition',
+    artform: 'Sarswela / Traditional Song',
+    description: '“Ang Maya” is a waltz from the 1905 sarswela “Filipinas Para Los Filipinos,” composed by Jose Estella with lyrics by Severino Reyes. The song is a poignant reflection of Filipino life and culture during the early 20th century, capturing themes of love, longing, and the beauty of everyday experiences. Its melodic structure and lyrical content have made it a beloved piece in the Filipino musical repertoire, resonating with audiences for generations.',
+    personalAnalysis: '',
+    analysis: 'The song’s emotional intimacy and lyrical simplicity make it a strong expression of Filipino sentiment. It captures everyday feeling and national identity through a melody that remains familiar and enduring.',
     img: 'artwork8.jpg'
   },
   {
     title: 'Makinilya (Typewriter)',
-    artist: 'Manufacturer unknown; used by Romeo Moran, a local journalist and writer, in the mid-20th century, located at Museo de Maria Carpena / municipal heritage collection, Santa Rosa, Laguna',
+    artist: 'Romeo Moran',
+    location: 'Museo de Maria Carpena / municipal heritage collection, Santa Rosa, Laguna',
+    artform: 'Historical Object / Typewriter',
     description: 'This typewriter was used by Romeo Moran, who served as secretary of the municipality of Santa Rosa. It remained in use until February 1995.',
-    analysis: '...',
+    personalAnalysis: '',
+    analysis: 'This object connects writing, local government, and everyday civic life. Its practical use makes it an important artifact of labor, memory, and record-keeping in the community.',
     img: 'artwork9.jpg'
   },
   {
     title: 'American Helmets – World War II, and Bayoneta',
-    artist: 'Manufacturer unknown; used by local soldiers during World War II, located at Museo de Maria Carpena / municipal heritage collection, Santa Rosa, Laguna',
+    artist: 'Local soldiers of Santa Rosa',
+    location: 'Museo de Maria Carpena / municipal heritage collection, Santa Rosa, Laguna',
+    artform: 'Military Artifact',
     description: 'These American helmets and bayonets were used by local soldiers during World War II. They are part of the municipal heritage collection at the Museo de Maria Carpena in Santa Rosa, Laguna, and serve as historical artifacts that provide insight into the military history and experiences of the local community during the war.',
-    analysis: '...',
+    personalAnalysis: '',
+    analysis: 'These objects preserve the physical memory of wartime struggle and sacrifice. They remind viewers that history is not only told through speeches or monuments, but also through tools, uniforms, and surviving relics.',
     img: 'artwork10.jpg'
   }
   ];
@@ -466,8 +493,11 @@
   const overlay = document.getElementById('modalOverlay');
   const modalImage = document.getElementById('modalImage');
   const modalTitle = document.getElementById('modalTitle');
-  const modalMeta = document.getElementById('modalMeta');
+  const modalArtist = document.getElementById('modalArtist');
+  const modalLocation = document.getElementById('modalLocation');
+  const modalArtform = document.getElementById('modalArtform');
   const modalDescription = document.getElementById('modalDescription');
+  const modalPersonalAnalysis = document.getElementById('modalPersonalAnalysis');
   const modalAnalysis = document.getElementById('modalAnalysis');
 
   list.addEventListener('click', (e) => {
@@ -476,8 +506,11 @@
     const art = artworks[frame.dataset.index];
     modalImage.innerHTML = art.img ? `<img src="${art.img}" alt="${art.title}">` : '<span class="placeholder-label">Artwork Image</span>';
     modalTitle.textContent = art.title;
-    modalMeta.textContent = art.artist;
+    modalArtist.textContent = art.artist;
+    modalLocation.textContent = art.location;
+    modalArtform.textContent = art.artform;
     modalDescription.textContent = art.description;
+    modalPersonalAnalysis.textContent = art.personalAnalysis ?? '';
     modalAnalysis.textContent = art.analysis;
     overlay.classList.add('open');
   });
@@ -504,7 +537,7 @@
   // To add the real group photo: paste an image URL or data-URI below.
   const groupPhotoUrl = 'groupPhoto.jpg'; // e.g. 'https://...' or 'data:image/jpeg;base64,...'
   if (groupPhotoUrl) {
-    document.getElementById('groupPhoto').innerHTML = `<img src="${groupPhotoUrl}" alt="Group 7">`;
+    document.getElementById('groupPhoto').innerHTML = `<img src="${groupPhotoUrl}" alt="bsit 3-2 group photo">`;
   }
 </script>
 </body>
